@@ -15,8 +15,13 @@ import android.view.ViewGroup;
  */
 public class FragmentPertama extends Fragment {
 
-    public static FragmentPertama newInstance(){
-        return new FragmentPertama();
+    public static FragmentPertama newInstance(String datass){
+        FragmentPertama fragmentPertama = new FragmentPertama();
+
+        Bundle arguments = new Bundle();
+        arguments.putString("data" , datass);
+        fragmentPertama.setArguments(arguments);
+        return fragmentPertama;
     }
 
 

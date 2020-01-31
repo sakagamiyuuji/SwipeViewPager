@@ -1,15 +1,11 @@
 package com.e.swipeviewpager;
 
-import androidx.annotation.Nullable;
+
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.ViewPager;
-
 import android.os.Bundle;
-
 import com.google.android.material.tabs.TabLayout;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,77 +14,45 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private AdapterVP adapterVP;
     private TabLayout tabMenu;
-    
+
+    ArrayList<String> menuTitleData = new ArrayList<>();
+    ArrayList<String> data = new ArrayList<>();
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        generateTitle();
+        generateDate();
+
         //implement view pager
         viewPager = findViewById(R.id.pager_fragment);
-        adapterVP = new AdapterVP(getSupportFragmentManager());
+        adapterVP = AdapterVP.newInstance(getSupportFragmentManager(), menuTitleData, data);
+        
+        //adapterVP = new AdapterVP(getSupportFragmentManager());
+
         viewPager.setAdapter(adapterVP);
+
         tabMenu = findViewById(R.id.menu);
         tabMenu.setupWithViewPager(viewPager);
 
     }
 
-    //Fragment adapter merupakan abstrac class, tidak bisa langsung di buat objek
-    //harus di implementasikan terlebih dahulu
+    private void generateTitle(){
+        menuTitleData.add("Promo");
+        menuTitleData.add("Paket Hemat");
+        menuTitleData.add("Minuman");
+        menuTitleData.add("Desert");
+        menuTitleData.add("Syalalalal");
+    }
 
-    public class AdapterVP extends FragmentStatePagerAdapter{
-
-        //buat constructor
-
-        public AdapterVP(FragmentManager fm) {
-            super(fm);
-        }
-
-
-        @Override
-        public Fragment getItem(int position) {
-            FragmentPertama fragmentPertama = new FragmentPertama();
-            FragmentKedua fragmentKedua = new FragmentKedua();
-            Fragment item = null;
-
-            switch(position){
-                case 0:
-                    item = fragmentPertama;
-                    break;
-                    //return fragmentPertama;
-                case 1:
-                    item = fragmentKedua;
-                    break;
-                    //return fragmentKedua;
-                default:
-                    item = fragmentPertama;
-                    break;
-            }
-            return item;
-        }
-
-        @Override
-        public int getCount() {
-            //jumlah berapa fragment
-            return 11;
-        }
-
-        @Nullable
-        @Override
-        public CharSequence getPageTitle(int position) {
-            CharSequence title;
-            switch (position){
-                case 0:
-                    title = "Rimuru";
-                    break;
-                case 1:
-                    title = "Slime";
-                    break;
-                    default:
-                        title = "KOPLAK";
-            }
-            return title;
-        }
+    private void generateDate(){
+        data.add("data 1");
+        data.add("data 2");
+        data.add("data 3");
+        data.add("data 4");
+        data.add("data 5");
     }
 }
