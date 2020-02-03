@@ -35,7 +35,12 @@ public class AdapterVP extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        FragmentPertama fragmentPertama = new FragmentPertama();
+        String text = myData.get(position);
+        FragmentPertama fragmentPertama = FragmentPertama.newInstance(text);
+        return fragmentPertama;
+
+
+        /*FragmentPertama fragmentPertama = new FragmentPertama();
         FragmentKedua fragmentKedua = new FragmentKedua();
         Fragment item = null;
 
@@ -51,8 +56,8 @@ public class AdapterVP extends FragmentStatePagerAdapter {
             default:
                 item = fragmentPertama;
                 break;
-        }
-        return item;
+        }*/
+        //return item;
     }
 
     @Override

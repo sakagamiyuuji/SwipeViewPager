@@ -4,10 +4,12 @@ package com.e.swipeviewpager;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 
 /**
@@ -29,12 +31,15 @@ public class FragmentPertama extends Fragment {
         // Required empty public constructor
     }
 
-
+    private TextView textData;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.pertama_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.pertama_fragment, container, false);
+        textData = rootView.findViewById(R.id.tv_frag1);
+        textData.setText(getArguments().getString("data"));
+        return rootView;
     }
 
 }

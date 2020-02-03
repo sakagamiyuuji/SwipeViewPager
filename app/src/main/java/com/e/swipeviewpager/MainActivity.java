@@ -17,6 +17,7 @@ public class MainActivity extends AppCompatActivity {
 
     ArrayList<String> menuTitleData = new ArrayList<>();
     ArrayList<String> data = new ArrayList<>();
+    ArrayList<Ensiklopedia> ensiKlo = new ArrayList<>();
 
 
     @Override
@@ -30,7 +31,6 @@ public class MainActivity extends AppCompatActivity {
         //implement view pager
         viewPager = findViewById(R.id.pager_fragment);
         adapterVP = AdapterVP.newInstance(getSupportFragmentManager(), menuTitleData, data);
-        
         //adapterVP = new AdapterVP(getSupportFragmentManager());
 
         viewPager.setAdapter(adapterVP);
@@ -54,5 +54,12 @@ public class MainActivity extends AppCompatActivity {
         data.add("data 3");
         data.add("data 4");
         data.add("data 5");
+    }
+
+    private void ensiklopedia(){
+        ensiKlo.add(new Ensiklopedia("Sword Art Online", "Kirito"));
+        ensiKlo.add(new Ensiklopedia("The irregular school", "Shiba Tatsuya"));
+        ensiKlo.add(new Ensiklopedia("Hai to gensou no grimgar", "Haruhiro"));
+        ensiKlo.add(new Ensiklopedia("Golden Time", "Tada"));
     }
 }

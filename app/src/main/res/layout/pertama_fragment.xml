@@ -7,7 +7,7 @@
     tools:context=".FragmentPertama">
 
     <TextView
-        android:id="@+id/tv_frag2"
+        android:id="@+id/tv_frag1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="TextView"
