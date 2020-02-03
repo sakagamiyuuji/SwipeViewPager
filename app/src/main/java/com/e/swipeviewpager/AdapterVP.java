@@ -1,5 +1,6 @@
 package com.e.swipeviewpager;
 
+import android.widget.Adapter;
 import android.widget.AdapterView;
 
 import androidx.annotation.Nullable;
@@ -16,6 +17,7 @@ public class AdapterVP extends FragmentStatePagerAdapter {
 
     private static ArrayList<String> myTitles;
     private static ArrayList<String> myData;
+    private static ArrayList<Ensiklopedia> myAnimeList;
 
     private static int numOfItem;
 
@@ -27,6 +29,13 @@ public class AdapterVP extends FragmentStatePagerAdapter {
         return adapterVP;
     }
 
+    public static AdapterVP newInstance(FragmentManager fragmentManager, ArrayList<Ensiklopedia> ensiklo){
+        AdapterVP adapterVP = new AdapterVP(fragmentManager);
+        myAnimeList = ensiklo;
+        numOfItem = ensiklo.size();
+        return adapterVP;
+    }
+
     //buat constructor
     public AdapterVP(FragmentManager fm) {
         super(fm);
@@ -35,7 +44,7 @@ public class AdapterVP extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        String text = myData.get(position);
+        ArrayList<Ensiklopedia.Character> text = myAnimeList.get(position).getData();
         FragmentPertama fragmentPertama = FragmentPertama.newInstance(text);
         return fragmentPertama;
 
@@ -69,7 +78,7 @@ public class AdapterVP extends FragmentStatePagerAdapter {
     @Nullable
     @Override
     public CharSequence getPageTitle(int position) {
-        String title = myTitles.get(position);
+        String title = myAnimeList.get(position).getJudulAnime();
         return title;
 
         /*CharSequence title;

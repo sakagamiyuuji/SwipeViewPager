@@ -6,6 +6,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.os.Bundle;
 import com.google.android.material.tabs.TabLayout;
 import java.util.ArrayList;
+import android.widget.ArrayAdapter;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -20,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<Ensiklopedia> ensiKlo = new ArrayList<>();
 
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,10 +30,13 @@ public class MainActivity extends AppCompatActivity {
 
         generateTitle();
         generateDate();
+        ensiklopedia();
+
 
         //implement view pager
         viewPager = findViewById(R.id.pager_fragment);
-        adapterVP = AdapterVP.newInstance(getSupportFragmentManager(), menuTitleData, data);
+        //adapterVP = AdapterVP.newInstance(getSupportFragmentManager(), menuTitleData, data);
+        adapterVP = AdapterVP.newInstance(getSupportFragmentManager(), ensiKlo);
         //adapterVP = new AdapterVP(getSupportFragmentManager());
 
         viewPager.setAdapter(adapterVP);
@@ -57,9 +63,25 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void ensiklopedia(){
-        ensiKlo.add(new Ensiklopedia("Sword Art Online", "Kirito"));
-        ensiKlo.add(new Ensiklopedia("The irregular school", "Shiba Tatsuya"));
-        ensiKlo.add(new Ensiklopedia("Hai to gensou no grimgar", "Haruhiro"));
-        ensiKlo.add(new Ensiklopedia("Golden Time", "Tada"));
+
+        ArrayList<Ensiklopedia.Character> sao = new ArrayList<>();
+        sao.add(new Ensiklopedia.Character("Kirigaya Kazuto", "17 Tahun"));
+        sao.add(new Ensiklopedia.Character("Yuuki Asuna", "18 Tahun"));
+        sao.add(new Ensiklopedia.Character("Alice Zuberg", "19 Tahun"));
+
+        ArrayList<Ensiklopedia.Character> haiToGen = new ArrayList<>();
+        haiToGen.add(new Ensiklopedia.Character("Haruhiro", "17 Tahun"));
+        haiToGen.add(new Ensiklopedia.Character("Manato", "17 Tahun"));
+
+        ArrayList<Ensiklopedia.Character> theIrregular = new ArrayList<>();
+        theIrregular.add(new Ensiklopedia.Character("Shiba Miyuki", "17 Tahun"));
+        theIrregular.add(new Ensiklopedia.Character("Shiba Tatsuya", "18 Tahun"));
+
+
+        ensiKlo.add(new Ensiklopedia("Sword Art Online", sao));
+        ensiKlo.add(new Ensiklopedia("The irregular school", theIrregular));
+        ensiKlo.add(new Ensiklopedia("Hai to gensou no grimgar", haiToGen));
+        //ensiKlo.add(new Ensiklopedia("Golden Time", "Tada"));
     }
+
 }
