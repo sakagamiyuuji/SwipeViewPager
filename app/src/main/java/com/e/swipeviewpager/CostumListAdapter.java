@@ -26,8 +26,9 @@ public class CostumListAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
-        return characters.get(position);
+    public Ensiklopedia.Character getItem(int position) {
+        Ensiklopedia.Character character = (Ensiklopedia.Character) characters.get(position);
+        return character;
     }
 
     @Override
@@ -42,14 +43,17 @@ public class CostumListAdapter extends BaseAdapter {
                     inflate(R.layout.layout_lv, parent, false);
         }
 
-        Ensiklopedia.Character currentItem = characters.get(position);
-        //bisa langsung getItem(position)
 
-        TextView nama = convertView.findViewById(R.id.nama);
-        TextView umur = convertView.findViewById(R.id.umur);
+            Ensiklopedia.Character currentItem = characters.get(position);
+            //bisa langsung getItem(position)
 
-        nama.setText(currentItem.getNama());
-        umur.setText(currentItem.getUmur());
+            TextView nama = convertView.findViewById(R.id.nama);
+            TextView umur = convertView.findViewById(R.id.umur);
+
+            nama.setText(currentItem.getNama());
+            umur.setText(currentItem.getUmur());
+
+
 
         return convertView;
     }

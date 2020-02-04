@@ -2,6 +2,7 @@ package com.e.swipeviewpager;
 
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
@@ -44,8 +45,10 @@ public class AdapterVP extends FragmentStatePagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
+
         ArrayList<Ensiklopedia.Character> text = myAnimeList.get(position).getData();
-        FragmentPertama fragmentPertama = FragmentPertama.newInstance(text);
+        FragmentPertama fragmentPertama = new FragmentPertama();
+        fragmentPertama.getData(text);
         return fragmentPertama;
 
 
