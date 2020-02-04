@@ -14,11 +14,19 @@ public class Ensiklopedia {
         private String nama;
         private String umur;
         private String des;
+        private int image;
 
         public Character(String nama, String umur, String des){
             this.nama = nama;
             this.umur = umur;
             this.des = des;
+        }
+
+        public Character(String nama, String umur, String des, int image){
+            this.nama = nama;
+            this.umur = umur;
+            this.des = des;
+            this.image = image;
         }
 
         public String getNama() {
@@ -33,6 +41,10 @@ public class Ensiklopedia {
             return des;
         }
 
+        public int getImage(){
+            return image;
+        }
+
         @Override
         public int describeContents() {
             return 0;
@@ -43,6 +55,7 @@ public class Ensiklopedia {
             dest.writeString(this.nama);
             dest.writeString(this.umur);
             dest.writeString(this.des);
+            dest.writeInt(this.image);
         }
 
         public Character(){
@@ -53,6 +66,7 @@ public class Ensiklopedia {
             this.nama = in.readString();
             this.umur = in.readString();
             this.des = in.readString();
+            this.image = in.readInt();
         }
 
         public static final Parcelable.Creator<Character> CREATOR = new Parcelable.Creator<Character>(){
